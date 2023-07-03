@@ -9,6 +9,7 @@ public class EnemyBasic : MonoBehaviour
     [SerializeField] EnemyMeleeScriptableObject EnemyValues;
     int hp;
     bool inRangeOfTarget = false;
+    RingFloor parentFloor = null;
 
 
     //might change later so that on start projectile get a tag of their damage, or maybe a rotation?
@@ -18,6 +19,7 @@ public class EnemyBasic : MonoBehaviour
         FaceMiddle();
         hp = EnemyValues.maxHP;
         StartCoroutine(CheckLoop());
+        StartCoroutine(FloorLoop());
     }
 
     private void Update()
@@ -58,6 +60,14 @@ public class EnemyBasic : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    void CheckRing()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit rayCastHit, 2, EnemyValues.floorLayerMask))
+        {
+            parentFloor = rayCastHit.transform.GetComponent<RingFloor>();
+            transform.SetParent(parentFloor.transform);
+        }
+    }
 
     void CheckForPlayer()
     {
@@ -87,6 +97,14 @@ public class EnemyBasic : MonoBehaviour
         while (true)
         {
             CheckForPlayer();
+            yield return new WaitForSeconds(1);
+        }
+    }
+    IEnumerator FloorLoop()
+    {
+        while (true)
+        {
+            CheckRing();
             yield return new WaitForSeconds(1);
         }
     }

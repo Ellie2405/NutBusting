@@ -10,5 +10,6 @@ public class EnemyMeleeScriptableObject : ScriptableObject
     public float movementSpeed;
     public int currencyDrop;
     public LayerMask playerObjectLayerMask;
+    public LayerMask floorLayerMask;
 
 }
