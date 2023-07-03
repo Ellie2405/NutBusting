@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b4862d4cc4072c4bb5cee5cfbcc8086, type: 3}
   m_Name: BruteData
   m_EditorClassIdentifier: 
-  maxHP: 12
+  maxHP: 5
   damage: 1
   movementSpeed: 0.3
   currencyDrop: 10

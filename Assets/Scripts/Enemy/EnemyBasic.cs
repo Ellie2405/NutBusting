@@ -74,7 +74,7 @@ public class EnemyBasic : MonoBehaviour
 
     void Attack(TurretAbstract target)
     {
-        inRangeOfTarget = target.TakeDamage(EnemyValues.damage);
+        inRangeOfTarget = target.TakeDamage(EnemyValues.damage, this);
     }
 
     void FaceMiddle()

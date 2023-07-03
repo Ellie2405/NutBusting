@@ -32,7 +32,7 @@ public abstract class TurretAbstract : MonoBehaviour
     }
 
     //return true if still alive
-    public bool TakeDamage(int damage)
+    public virtual bool TakeDamage(int damage, EnemyBasic attacker)
     {
         hp -= damage;
         return CheckHP();
@@ -48,7 +48,7 @@ public abstract class TurretAbstract : MonoBehaviour
         return true;
     }
 
-    void DestroyTurret()
+    protected virtual void DestroyTurret()
     {
         parentRing.FreeUpSpot(ringPosition);
         Destroy(gameObject);
