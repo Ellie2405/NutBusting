@@ -8,25 +8,30 @@ public class EnemyBasic : MonoBehaviour
 {
     [SerializeField] EnemyMeleeScriptableObject EnemyValues;
     int hp;
+    bool inRangeOfTarget = false;
 
+
+    //might change later so that on start projectile get a tag of their damage, or maybe a rotation?
 
     private void Start()
     {
         FaceMiddle();
         hp = EnemyValues.maxHP;
+        StartCoroutine(CheckLoop());
     }
 
     private void Update()
     {
-        transform.Translate(Vector3.forward * EnemyValues.movementSpeed * Time.deltaTime);
+        if (!inRangeOfTarget)
+            Walk();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(Constants.PLAYER_PROJECTILE_TAG))
         {
-            TakeDamage();
-            Debug.Log(other.gameObject.ToString());
+            TakeDamage(Mathf.RoundToInt(other.transform.eulerAngles.z));
+            //Debug.Log(other.transform.eulerAngles.z.ToString());
         }
 
     }
@@ -34,6 +39,7 @@ public class EnemyBasic : MonoBehaviour
     public void TakeDamage(int i)
     {
         hp -= i;
+        Debug.Log("hp left" + hp.ToString());
         CheckHP();
     }
 
@@ -47,13 +53,41 @@ public class EnemyBasic : MonoBehaviour
     {
         if (hp < 1)
         {
-            Inventory.Instance.ObtainCurrency(8);
+            Inventory.Instance.ObtainCurrency(EnemyValues.currencyDrop);
+            EnemyManager.enemiesAlive--;
             Destroy(gameObject);
         }
+    }
+
+    void CheckForPlayer()
+    {
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit rayCastHit, 1, EnemyValues.playerObjectLayerMask))
+        {
+            Attack(rayCastHit.transform.GetComponent<TurretAbstract>());
+        }
+    }
+
+    void Walk()
+    {
+        transform.Translate(Vector3.forward * EnemyValues.movementSpeed * Time.deltaTime);
+    }
+
+    void Attack(TurretAbstract target)
+    {
+        inRangeOfTarget = target.TakeDamage(EnemyValues.damage);
     }
 
     void FaceMiddle()
     {
         transform.LookAt(new Vector3(0, transform.position.y, 0));
+    }
+
+    IEnumerator CheckLoop()
+    {
+        while (true)
+        {
+            CheckForPlayer();
+            yield return new WaitForSeconds(1);
+        }
     }
 }

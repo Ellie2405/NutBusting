@@ -6,10 +6,14 @@ public class FloorManager : MonoBehaviour
 {
     public static FloorManager Instance;
     int rotationDegrees = 10;
-    int selectedFloor = 1;
+    int selectedFloor = 0;
     [SerializeField] List<RingFloor> rings = new List<RingFloor>();
     [SerializeField] TurretAbstract turret;
+    [SerializeField] LayerMask floorLayerMask;
+    [SerializeField] LayerMask turretSlotLayerMask;
 
+    [SerializeField] RingFloor floorToMove;
+    TurretSlot turretSlotSelected;
 
 
     private void Awake()
@@ -48,6 +52,21 @@ public class FloorManager : MonoBehaviour
         {
             OrderTurret(turret);
         }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            SelectSlot();
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            SelectRing();
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            SelectRotation();
+        }
     }
 
     void OrderTurret(TurretAbstract turretToBuild)
@@ -65,6 +84,43 @@ public class FloorManager : MonoBehaviour
             }
         }
         else Debug.Log("Not enough currency");
+
+    }
+
+    //select slot
+    void SelectSlot()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, 100, turretSlotLayerMask))
+        {
+            turretSlotSelected = raycastHit.transform.GetComponent<TurretSlot>().SelectSlot();
+        }
+
+    }
+
+    //store start
+    void SelectRing()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, 100, floorLayerMask))
+        {
+            //RingFloor rf = raycastHit.transform.GetComponent<RingFloor>();
+            //rf.StoreA(raycastHit.point);
+            floorToMove = raycastHit.transform.GetComponent<RingFloor>();
+            floorToMove.StoreA(raycastHit.point);
+        }
+
+    }
+
+    //store end
+    void SelectRotation()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, 100, floorLayerMask))
+        {
+            //if (raycastHit.transform.GetComponent<RingFloor>() == floorToMove)
+            floorToMove.StoreB(raycastHit.point);
+        }
 
     }
 }

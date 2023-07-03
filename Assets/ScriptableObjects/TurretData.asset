@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f86cc210d590874e84734c8702827d5, type: 3}
   m_Name: TurretData
   m_EditorClassIdentifier: 
-  maxHP: 0
-  damage: 0
+  maxHP: 3
+  damage: 1
   projectileSpeed: 5
   shotsPerMinute: 60
-  projectile: {fileID: 4927530178758839785, guid: bd1ad6536f1dc84439b9f24c2de72059,
+  projectile: {fileID: 2806401507574797057, guid: 4a03eefa6b08ef141bd6530175eb6db6,
     type: 3}
+  projectileHeight: 0.87
   price: 20

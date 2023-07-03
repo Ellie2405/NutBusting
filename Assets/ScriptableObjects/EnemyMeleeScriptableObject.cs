@@ -8,4 +8,7 @@ public class EnemyMeleeScriptableObject : ScriptableObject
     public int maxHP;
     public int damage;
     public float movementSpeed;
+    public int currencyDrop;
+    public LayerMask playerObjectLayerMask;
+
 }

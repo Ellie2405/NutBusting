@@ -16,6 +16,6 @@ public abstract class ShootingTurretAbstract : TurretAbstract
 
     protected void Shoot()
     {
-        Instantiate(TurretValues.projectile, transform.position, transform.rotation);
+        Instantiate(TurretValues.projectile, new(transform.position.x, TurretValues.projectileHeight, transform.position.z), transform.rotation);
     }
 }
