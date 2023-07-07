@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
@@ -23,11 +24,14 @@ public class RingFloor : MonoBehaviour
     [SerializeField] float rotationSpeed;
     bool inPosition = true;
     int rotationDirection;
-    int mousePressPos;
-    int mouseReleasePos;
-    int targetPosition;
-    int errorRange;
+    [SerializeField] int mousePressPos;
+    [SerializeField] int mouseNewPos;
+    [SerializeField] int targetPosition;
+    [SerializeField] int errorRange;
 
+    //new
+    int initialRotation;
+    [SerializeField] int rota;
 
     void Update()
     {
@@ -45,24 +49,24 @@ public class RingFloor : MonoBehaviour
             RotateSlowly();
             CheckPosition();
         }
-
     }
 
     public void StoreA(Vector3 a)
     {
         mousePressPos = Vector3Angle(a);
         //Debug.Log($"{mousePressPos} stored");
+        initialRotation = Round10((int)parentTransform.eulerAngles.y);
     }
     public void StoreB(Vector3 b)
     {
-        mouseReleasePos = Vector3Angle(b);
-        CalculateRotation();
+        mouseNewPos = Vector3Angle(b);
+        CalculateRotation2();
     }
 
     void CalculateRotation()
     {
         //calculate difference
-        int rotation = mouseReleasePos - mousePressPos;
+        int rotation = mouseNewPos - mousePressPos;
         //if rotation is close to 0, leave the function;
         if (rotation > -5 && rotation < 5) return;
         //round difference to multiples of 10
@@ -91,6 +95,51 @@ public class RingFloor : MonoBehaviour
         }
         //set target rotation
         inPosition = false;
+    }
+
+    void CalculateRotation2()
+    {
+        //get the distance moved
+        rota = mouseNewPos - mousePressPos;
+        rota = Round10(rota);
+        //get target rotation and clamp it
+        targetPosition = initialRotation - rota;
+        if (targetPosition < 0) targetPosition += 360;
+        if (targetPosition > 360) targetPosition -= 360;
+        //variable for indicating direction
+        float remainingRotation = targetPosition - parentTransform.eulerAngles.y;
+        //check rotation length and make sure it takes the quickest route
+        if (remainingRotation > 180)
+            remainingRotation -= 360;
+        else if (remainingRotation < -180)
+            remainingRotation += 360;
+
+        //set the direction of the rotation
+        if (remainingRotation > 0)
+        {
+            rotationDirection = Constants.CLOCKWISE;
+            if (targetPosition == 360) targetPosition = 0;
+            errorRange = targetPosition + (int)Constants.MIN_ROTATION;
+        }
+        else
+        {
+            rotationDirection = Constants.COUNTERCLOCKWISE;
+            if (targetPosition == 0) targetPosition = 360;
+            errorRange = targetPosition - (int)Constants.MIN_ROTATION;
+        }
+        //if not rotating, check if should be rotation
+        if (inPosition)
+        {
+            CheckTarget();
+        }
+    }
+
+    void CheckTarget()
+    {
+        if (targetPosition != Round10((int)parentTransform.eulerAngles.y))
+        {
+            inPosition = false;
+        }
     }
 
     //happens every tick to check if the rotation is complete

@@ -28,24 +28,24 @@ public class FloorManager : MonoBehaviour
     void Update()
     {
         //Ring controls
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            selectedFloor--;
-            if (selectedFloor < 0) selectedFloor = 0;
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            selectedFloor++;
-            if (selectedFloor > rings.Count - 1) selectedFloor = rings.Count - 1;
-        }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            rings[selectedFloor].Rotate(rotationDegrees);
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            rings[selectedFloor].Rotate(-rotationDegrees);
-        }
+        //if (Input.GetKeyDown(KeyCode.UpArrow))
+        //{
+        //    selectedFloor--;
+        //    if (selectedFloor < 0) selectedFloor = 0;
+        //}
+        //if (Input.GetKeyDown(KeyCode.DownArrow))
+        //{
+        //    selectedFloor++;
+        //    if (selectedFloor > rings.Count - 1) selectedFloor = rings.Count - 1;
+        //}
+        //if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //{
+        //    rings[selectedFloor].Rotate(rotationDegrees);
+        //}
+        //if (Input.GetKeyDown(KeyCode.RightArrow))
+        //{
+        //    rings[selectedFloor].Rotate(-rotationDegrees);
+        //}
 
         //Turret Building
         if (Input.GetKeyDown(KeyCode.Space))
@@ -57,16 +57,19 @@ public class FloorManager : MonoBehaviour
         {
             SelectSlot();
         }
-
         if (Input.GetMouseButtonDown(0))
         {
             SelectRing();
         }
-
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButton(0))
         {
             SelectRotation();
         }
+
+        //if (Input.GetMouseButtonUp(0))
+        //{
+        //    SelectRotation();
+        //}
     }
 
     void OrderTurret(TurretAbstract turretToBuild)
