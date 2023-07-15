@@ -5,7 +5,6 @@ using UnityEngine;
 public class FloorManager : MonoBehaviour
 {
     public static FloorManager Instance;
-    int rotationDegrees = 10;
     int selectedFloor = 0;
     [SerializeField] List<RingFloor> rings = new List<RingFloor>();
     [SerializeField] TurretAbstract turret;
@@ -24,7 +23,6 @@ public class FloorManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    // Update is called once per frame
     void Update()
     {
         //Ring controls

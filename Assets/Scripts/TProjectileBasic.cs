@@ -10,19 +10,19 @@ public class TProjectileBasic : MonoBehaviour
 
     void Start()
     {
-        //rotate the pojectile to send its damage?
+        //rotate the pojectile to send its damage
         transform.Rotate(0, 0, TurretValues.damage);
         StartCoroutine(Timeout());
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.forward * Time.deltaTime * TurretValues.projectileSpeed);
+        transform.Translate(Time.deltaTime * TurretValues.projectileSpeed * Vector3.forward);
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        //vfx
         Destroy(gameObject);
     }
 

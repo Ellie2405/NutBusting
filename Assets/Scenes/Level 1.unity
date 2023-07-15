@@ -289,14 +289,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLevelWaves:
   - time: 3
-    eType: 0
-    eAmount: 3
-  - time: 6
-    eType: 0
-    eAmount: 3
-  - time: 9
-    eType: 0
-    eAmount: 3
+    eType: 1
+    eAmount: 1
   spawnDelayTimer: 15
   distanceFromMiddle: 10
   enemy:

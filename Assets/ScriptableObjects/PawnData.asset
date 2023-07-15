@@ -22,3 +22,5 @@ MonoBehaviour:
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  scanCD: 1
+  attackCD: 1

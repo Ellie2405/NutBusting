@@ -10,6 +10,7 @@ public class EnemyBasic : MonoBehaviour
     int hp;
     bool inRangeOfTarget = false;
     RingFloor parentFloor = null;
+    float GCD;
 
 
     //might change later so that on start projectile get a tag of their damage, or maybe a rotation?
@@ -18,6 +19,7 @@ public class EnemyBasic : MonoBehaviour
     {
         FaceMiddle();
         hp = EnemyValues.maxHP;
+        GCD = EnemyValues.scanCD;
         StartCoroutine(CheckLoop());
         StartCoroutine(FloorLoop());
     }
@@ -32,7 +34,6 @@ public class EnemyBasic : MonoBehaviour
     {
         if (other.CompareTag(Constants.PLAYER_PROJECTILE_TAG))
         {
-
             TakeDamage(Mathf.RoundToInt(other.transform.eulerAngles.z));
             //Debug.Log(other.transform.eulerAngles.z.ToString());
         }
@@ -42,7 +43,6 @@ public class EnemyBasic : MonoBehaviour
     public void TakeDamage(int i)
     {
         hp -= i;
-        Debug.Log("hp left" + hp.ToString());
         CheckHP();
     }
 
@@ -80,18 +80,21 @@ public class EnemyBasic : MonoBehaviour
     {
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit rayCastHit, 1, EnemyValues.playerObjectLayerMask))
         {
+            GCD = EnemyValues.attackCD;
             Attack(rayCastHit.transform.GetComponent<TurretAbstract>());
         }
     }
 
     void Walk()
     {
-        transform.Translate(Vector3.forward * EnemyValues.movementSpeed * Time.deltaTime);
+        transform.Translate(EnemyValues.movementSpeed * Time.deltaTime * Vector3.forward);
     }
 
     void Attack(TurretAbstract target)
     {
         inRangeOfTarget = target.TakeDamage(EnemyValues.damage, this);
+        if (!inRangeOfTarget) GCD = EnemyValues.scanCD;
+        //animation
     }
 
     void FaceMiddle()
@@ -104,7 +107,7 @@ public class EnemyBasic : MonoBehaviour
         while (true)
         {
             CheckForPlayer();
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(GCD);
         }
     }
     IEnumerator FloorLoop()

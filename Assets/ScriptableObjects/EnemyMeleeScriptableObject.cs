@@ -12,4 +12,7 @@ public class EnemyMeleeScriptableObject : ScriptableObject
     public LayerMask playerObjectLayerMask;
     public LayerMask floorLayerMask;
 
+    public float scanCD;
+    public float attackCD;
+
 }
