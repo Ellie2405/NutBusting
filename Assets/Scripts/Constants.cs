@@ -12,4 +12,6 @@ public static class Constants
     public const float MIN_ROTATION = 360 / BOARD_SLICES;
     public const int CLOCKWISE = 1;
     public const int COUNTERCLOCKWISE = -1;
+
+    public const int MAX_CURRENCY = 100;
 }

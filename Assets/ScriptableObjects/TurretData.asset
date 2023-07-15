@@ -19,4 +19,5 @@ MonoBehaviour:
   projectile: {fileID: 2806401507574797057, guid: 4a03eefa6b08ef141bd6530175eb6db6,
     type: 3}
   projectileHeight: 0.87
-  price: 20
+  price: 25
+  shotsToDie: 30

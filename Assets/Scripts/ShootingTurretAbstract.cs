@@ -10,12 +10,22 @@ public abstract class ShootingTurretAbstract : TurretAbstract
         if (counter > MINUTE / TurretValues.shotsPerMinute)
         {
             Shoot();
-            counter = 0;
         }
+    }
+
+    private void FixedUpdate()
+    {
+        if (attacksHistorical >= TurretValues.shotsToDie)
+        {
+            DestroyTurret();
+        }
+
     }
 
     protected void Shoot()
     {
         Instantiate(TurretValues.projectile, new(transform.position.x, TurretValues.projectileHeight, transform.position.z), transform.rotation);
+        attacksHistorical++;
+        counter = 0;
     }
 }

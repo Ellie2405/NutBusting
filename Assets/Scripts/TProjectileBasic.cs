@@ -21,6 +21,11 @@ public class TProjectileBasic : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime * TurretValues.projectileSpeed);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(gameObject);
+    }
+
     IEnumerator Timeout()
     {
         yield return new WaitForSeconds(1.5f);

@@ -292,7 +292,10 @@ MonoBehaviour:
     eType: 0
     eAmount: 3
   - time: 6
-    eType: 1
+    eType: 0
+    eAmount: 3
+  - time: 9
+    eType: 0
     eAmount: 3
   spawnDelayTimer: 15
   distanceFromMiddle: 10
@@ -1785,7 +1788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd0aeec84c6e144498765037513ef37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Currency: 40
+  Currency: 50
 --- !u!4 &964031057
 Transform:
   m_ObjectHideFlags: 0

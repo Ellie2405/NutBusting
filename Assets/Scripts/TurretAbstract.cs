@@ -8,11 +8,12 @@ public abstract class TurretAbstract : MonoBehaviour
 
     [SerializeField] protected TPBasicScriptableObject TurretValues;
     [SerializeField] protected int level;
-    int hp;
+    protected int hp;
     RingFloor parentRing;
     int ringPosition;
 
     protected float counter = 0;
+    protected float attacksHistorical;
 
     protected virtual void Start()
     {

@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     void UpdateHeroHP(int HP)
     {
         HeroHP.text = string.Format(HPTextFormat, HP.ToString());
+        Debug.Log(HP);
     }
 
     void UpdateScoreText(int score)

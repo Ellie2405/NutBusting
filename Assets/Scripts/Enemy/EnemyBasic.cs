@@ -32,6 +32,7 @@ public class EnemyBasic : MonoBehaviour
     {
         if (other.CompareTag(Constants.PLAYER_PROJECTILE_TAG))
         {
+
             TakeDamage(Mathf.RoundToInt(other.transform.eulerAngles.z));
             //Debug.Log(other.transform.eulerAngles.z.ToString());
         }
@@ -56,10 +57,16 @@ public class EnemyBasic : MonoBehaviour
         if (hp < 1)
         {
             Inventory.Instance.ObtainCurrency(EnemyValues.currencyDrop);
-            EnemyManager.enemiesAlive--;
-            Destroy(gameObject);
+            Die();
         }
     }
+
+    public void Die()
+    {
+        EnemyManager.enemiesAlive--;
+        Destroy(gameObject);
+    }
+
     void CheckRing()
     {
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit rayCastHit, 2, EnemyValues.floorLayerMask))

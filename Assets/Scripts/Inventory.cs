@@ -30,8 +30,7 @@ public class Inventory : MonoBehaviour
     [ContextMenu("Give Me Money")]
     public void GetCurrency()
     {
-        Currency += 100;
-        OnCurrencyChanged.Invoke(Currency);
+        ObtainCurrency(100);
     }
 
     public bool CanAfford(int amount)
@@ -42,6 +41,7 @@ public class Inventory : MonoBehaviour
     public void ObtainCurrency(int amount)
     {
         Currency += amount;
+        if (Currency > Constants.MAX_CURRENCY) Currency = Constants.MAX_CURRENCY;
         OnCurrencyChanged.Invoke(Currency);
     }
 }
