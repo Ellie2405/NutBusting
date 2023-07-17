@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 5
   damage: 1
-  movementSpeed: 0.35
+  movementSpeed: 0.245
   currencyDrop: 8
   playerObjectLayerMask:
     serializedVersion: 2

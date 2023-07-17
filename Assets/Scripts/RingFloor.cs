@@ -231,7 +231,7 @@ public class RingFloor : MonoBehaviour
                     //get the selected radial position in radians relative to rotation
                     float radPosition = Constants.TURRET_SPACING * spotToBuild + parentTransform.eulerAngles.y * Mathf.Deg2Rad;
                     var t = Instantiate(turretType,
-                        new Vector3(distanceFromMiddle * Mathf.Sin(radPosition), 0, distanceFromMiddle * Mathf.Cos(radPosition)),
+                        new Vector3(distanceFromMiddle * Mathf.Sin(radPosition), 1.2f, distanceFromMiddle * Mathf.Cos(radPosition)),
                         quaternion.identity, parentTransform);
                     //rotate the turret to face outside
                     t.transform.Rotate(0, radPosition * Mathf.Rad2Deg, 0);

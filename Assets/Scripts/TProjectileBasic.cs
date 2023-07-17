@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public class TProjectileBasic : MonoBehaviour
 {
     [SerializeField] TPBasicScriptableObject TurretValues;
+    readonly Vector3 AimDirection = new(0, -0.1f, 1);
 
     void Start()
     {
@@ -17,7 +18,7 @@ public class TProjectileBasic : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Time.deltaTime * TurretValues.projectileSpeed * Vector3.forward);
+        transform.Translate(Time.deltaTime * TurretValues.projectileSpeed * AimDirection);
     }
 
     private void OnTriggerEnter(Collider other)

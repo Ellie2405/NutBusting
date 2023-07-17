@@ -37,7 +37,16 @@ public class EnemyBasic : MonoBehaviour
             TakeDamage(Mathf.RoundToInt(other.transform.eulerAngles.z));
             //Debug.Log(other.transform.eulerAngles.z.ToString());
         }
+        else if (other.CompareTag(Constants.STEP_TAG))
+        {
+            Debug.Log("stepbro");
+            StartCoroutine(Climb(transform.position.y));
+        }
+    }
 
+    private void OnDrawGizmosSelected()
+    {
+        
     }
 
     public void TakeDamage(int i)
@@ -116,6 +125,15 @@ public class EnemyBasic : MonoBehaviour
         {
             CheckRing();
             yield return new WaitForSeconds(1);
+        }
+    }
+
+    IEnumerator Climb(float startY)
+    {
+        while (transform.position.y < startY + 0.2)
+        {
+            transform.Translate(Vector3.up * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
         }
     }
 }

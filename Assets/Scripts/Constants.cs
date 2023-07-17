@@ -5,6 +5,7 @@ using UnityEngine;
 public static class Constants
 {
     public const string PLAYER_PROJECTILE_TAG = "PlayerProj";
+    public const string STEP_TAG = "Step";
 
     //Board
     public const int BOARD_SLICES = 36;
