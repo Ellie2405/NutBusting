@@ -37,16 +37,6 @@ public class EnemyBasic : MonoBehaviour
             TakeDamage(Mathf.RoundToInt(other.transform.eulerAngles.z));
             //Debug.Log(other.transform.eulerAngles.z.ToString());
         }
-        else if (other.CompareTag(Constants.STEP_TAG))
-        {
-            Debug.Log("stepbro");
-            StartCoroutine(Climb(transform.position.y));
-        }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        
     }
 
     public void TakeDamage(int i)
@@ -80,8 +70,13 @@ public class EnemyBasic : MonoBehaviour
     {
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit rayCastHit, 2, EnemyValues.floorLayerMask))
         {
-            parentFloor = rayCastHit.transform.GetComponent<RingFloor>();
-            transform.SetParent(parentFloor.transform);
+            RingFloor floor = rayCastHit.transform.GetComponent<RingFloor>();
+            if (!ReferenceEquals(floor, parentFloor))
+            {
+                parentFloor = floor;
+                transform.SetParent(parentFloor.transform);
+                StartCoroutine(Climb(transform.position.y));
+            }
         }
     }
 

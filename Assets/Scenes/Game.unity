@@ -15724,7 +15724,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 174874927}
-  - component: {fileID: 174874928}
   m_Layer: 0
   m_Name: Ring 3
   m_TagString: Step
@@ -15748,19 +15747,6 @@ Transform:
   m_Father: {fileID: 309265393}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &174874928
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 174874926}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 4.44
-  m_Center: {x: 0, y: 0.85, z: 0}
 --- !u!1 &233300314
 GameObject:
   m_ObjectHideFlags: 0
@@ -49048,7 +49034,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 777118004}
-  - component: {fileID: 777118005}
   m_Layer: 0
   m_Name: Ring 1
   m_TagString: Step
@@ -49073,19 +49058,6 @@ Transform:
   m_Father: {fileID: 309265393}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &777118005
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 777118003}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2.44
-  m_Center: {x: 0, y: 1.1, z: 0}
 --- !u!1 &777644590
 GameObject:
   m_ObjectHideFlags: 0
@@ -71026,7 +70998,7 @@ GameObject:
   - component: {fileID: 1304579948}
   - component: {fileID: 1304579947}
   - component: {fileID: 1304579949}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Castle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77155,10 +77127,10 @@ MonoBehaviour:
   currentLevelWaves:
   - time: 3
     eType: 0
-    eAmount: 1
-  - time: 4
+    eAmount: 3
+  - time: 13
     eType: 1
-    eAmount: 0
+    eAmount: 2
   spawnDelayTimer: 5
   distanceFromMiddle: 7
   enemy:
@@ -90119,7 +90091,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1736426707}
-  - component: {fileID: 1736426708}
   m_Layer: 0
   m_Name: Ring 4
   m_TagString: Step
@@ -90143,19 +90114,6 @@ Transform:
   m_Father: {fileID: 309265393}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1736426708
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736426706}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 5.54
-  m_Center: {x: 0, y: 0.67, z: 0}
 --- !u!1 &1741674684
 GameObject:
   m_ObjectHideFlags: 0
@@ -112982,7 +112940,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2117032763}
-  - component: {fileID: 2117032764}
   m_Layer: 0
   m_Name: Ring 2
   m_TagString: Step
@@ -113006,19 +112963,6 @@ Transform:
   m_Father: {fileID: 309265393}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &2117032764
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2117032762}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 3.38
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &2117787792
 GameObject:
   m_ObjectHideFlags: 0
@@ -136231,7 +136175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentTransform: {fileID: 777118004}
   canHaveTurrets: 1
-  distanceFromMiddle: 1.5
+  distanceFromMiddle: 1.8
   spotToBuild: 0
   spots: 000000000000000000000000
   testPrefab: {fileID: 7823140194438224740, guid: 3960c2c1c23db86438f7b8a30afeed4e,
