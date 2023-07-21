@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 
 public class EnemyBasic : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class EnemyBasic : MonoBehaviour
     bool inRangeOfTarget = false;
     RingFloor parentFloor = null;
     float GCD;
+    float dissolve = 1;
+
+    [SerializeField] Transform feet;
+    [SerializeField] Animator animator;
+    [SerializeField] Renderer[] renderers = new Renderer[0];
 
 
     //might change later so that on start projectile get a tag of their damage, or maybe a rotation?
@@ -20,6 +26,7 @@ public class EnemyBasic : MonoBehaviour
         FaceMiddle();
         hp = EnemyValues.maxHP;
         GCD = EnemyValues.scanCD;
+        StartCoroutine(DissolveIn());
         StartCoroutine(CheckLoop());
         StartCoroutine(FloorLoop());
     }
@@ -42,6 +49,7 @@ public class EnemyBasic : MonoBehaviour
     public void TakeDamage(int i)
     {
         hp -= i;
+        Instantiate(EnemyValues.HitVFX, transform.position + (Vector3.up * 0.5f), Quaternion.identity);
         CheckHP();
     }
 
@@ -63,12 +71,13 @@ public class EnemyBasic : MonoBehaviour
     public void Die()
     {
         EnemyManager.enemiesAlive--;
-        Destroy(gameObject);
+        StartCoroutine(DissolveOut());
+        //Destroy(gameObject);
     }
 
     void CheckRing()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit rayCastHit, 2, EnemyValues.floorLayerMask))
+        if (Physics.Raycast(feet.position, Vector3.down, out RaycastHit rayCastHit, 2, EnemyValues.floorLayerMask))
         {
             RingFloor floor = rayCastHit.transform.GetComponent<RingFloor>();
             if (!ReferenceEquals(floor, parentFloor))
@@ -84,8 +93,14 @@ public class EnemyBasic : MonoBehaviour
     {
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit rayCastHit, 1, EnemyValues.playerObjectLayerMask))
         {
+            inRangeOfTarget = true;
             GCD = EnemyValues.attackCD;
-            Attack(rayCastHit.transform.GetComponent<TurretAbstract>());
+            StartCoroutine(AttackCo(rayCastHit.transform.GetComponent<TurretAbstract>()));
+        }
+        else
+        {
+            inRangeOfTarget = false;
+            GCD = EnemyValues.scanCD;
         }
     }
 
@@ -94,16 +109,36 @@ public class EnemyBasic : MonoBehaviour
         transform.Translate(EnemyValues.movementSpeed * Time.deltaTime * Vector3.forward);
     }
 
-    void Attack(TurretAbstract target)
-    {
-        inRangeOfTarget = target.TakeDamage(EnemyValues.damage, this);
-        if (!inRangeOfTarget) GCD = EnemyValues.scanCD;
-        //animation
-    }
-
     void FaceMiddle()
     {
         transform.LookAt(new Vector3(0, transform.position.y, 0));
+    }
+
+    IEnumerator DissolveIn()
+    {
+        while (dissolve > 0)
+        {
+            dissolve -= 0.01f;
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                renderers[i].material.SetFloat("_DissolveAmount", dissolve);
+            }
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    IEnumerator DissolveOut()
+    {
+        while (dissolve < 1)
+        {
+            dissolve += 0.01f;
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                renderers[i].material.SetFloat("_DissolveAmount", dissolve);
+            }
+            yield return new WaitForEndOfFrame();
+        }
+        Destroy(gameObject);
     }
 
     IEnumerator CheckLoop()
@@ -113,6 +148,13 @@ public class EnemyBasic : MonoBehaviour
             CheckForPlayer();
             yield return new WaitForSeconds(GCD);
         }
+    }
+
+    IEnumerator AttackCo(TurretAbstract target)
+    {
+        animator.SetTrigger("Attack");
+        yield return new WaitForSeconds(EnemyValues.attackWindUp);
+        target.TakeDamage(EnemyValues.damage, this);
     }
     IEnumerator FloorLoop()
     {
@@ -125,7 +167,7 @@ public class EnemyBasic : MonoBehaviour
 
     IEnumerator Climb(float startY)
     {
-        while (transform.position.y < startY + 0.2)
+        while (transform.position.y < startY + 0.15)
         {
             transform.Translate(Vector3.up * Time.deltaTime);
             yield return new WaitForEndOfFrame();

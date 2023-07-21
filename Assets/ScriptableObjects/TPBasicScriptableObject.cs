@@ -10,6 +10,8 @@ public class TPBasicScriptableObject : ScriptableObject
     public float projectileSpeed;
     public int shotsPerMinute;
     public GameObject projectile;
+    public GameObject DestroyedVFX;
+
     public float projectileHeight;
     public int price;
     public int shotsToDie;

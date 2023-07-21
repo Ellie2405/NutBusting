@@ -18,6 +18,8 @@ MonoBehaviour:
   shotsPerMinute: 60
   projectile: {fileID: 2806401507574797057, guid: 4a03eefa6b08ef141bd6530175eb6db6,
     type: 3}
-  projectileHeight: 1.75
+  DestroyedVFX: {fileID: 195892438659514834, guid: 2b05d2ccb8e2d654c8be7fa9ffc49838,
+    type: 3}
+  projectileHeight: 1.95
   price: 25
   shotsToDie: 30

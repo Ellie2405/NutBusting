@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b4862d4cc4072c4bb5cee5cfbcc8086, type: 3}
   m_Name: BruteData
   m_EditorClassIdentifier: 
-  maxHP: 5
+  maxHP: 8
   damage: 1
   movementSpeed: 0.14
   currencyDrop: 10
@@ -22,5 +22,7 @@ MonoBehaviour:
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  HitVFX: {fileID: 5847526129241933757, guid: 7f80f4a174607c34da1fe62bab759993, type: 3}
   scanCD: 1
-  attackCD: 1.5
+  attackCD: 2.6
+  attackWindUp: 1

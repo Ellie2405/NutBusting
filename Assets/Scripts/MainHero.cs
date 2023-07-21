@@ -6,6 +6,8 @@ using UnityEngine;
 public class MainHero : TurretAbstract
 {
     public static event Action<int> OnHeroDamaged;
+    [SerializeField] Animator animator;
+    
 
     protected override void Start()
     {
@@ -17,7 +19,7 @@ public class MainHero : TurretAbstract
         bool isStillAlive = base.TakeDamage(damage, attacker);
         OnHeroDamaged.Invoke(hp);
         Retaliate(attacker);
-        Debug.Log(damage);
+        animator.SetTrigger("Hit");
         return isStillAlive;
     }
 
@@ -28,8 +30,8 @@ public class MainHero : TurretAbstract
 
     protected override void DestroyTurret()
     {
+        Instantiate(TurretValues.DestroyedVFX, transform.position + Vector3.up, Quaternion.identity);
         Destroy(gameObject);
-
     }
 
 }

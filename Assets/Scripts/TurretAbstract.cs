@@ -51,6 +51,7 @@ public abstract class TurretAbstract : MonoBehaviour
 
     protected virtual void DestroyTurret()
     {
+        Instantiate(TurretValues.DestroyedVFX, transform.position, Quaternion.identity);
         parentRing.FreeUpSpot(ringPosition);
         Destroy(gameObject);
     }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 5
   damage: 1
-  movementSpeed: 0.245
+  movementSpeed: 1.245
   currencyDrop: 8
   playerObjectLayerMask:
     serializedVersion: 2
@@ -22,5 +22,7 @@ MonoBehaviour:
   floorLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  HitVFX: {fileID: 5847526129241933757, guid: 7f80f4a174607c34da1fe62bab759993, type: 3}
   scanCD: 1
-  attackCD: 1
+  attackCD: 1.16
+  attackWindUp: 0.24

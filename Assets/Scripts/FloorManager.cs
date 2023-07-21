@@ -46,14 +46,11 @@ public class FloorManager : MonoBehaviour
         //}
 
         //Turret Building
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            OrderTurret(turret);
-        }
 
         if (Input.GetMouseButtonDown(1))
         {
             SelectSlot();
+            OrderTurret(turret);
         }
         if (Input.GetMouseButtonDown(0))
         {

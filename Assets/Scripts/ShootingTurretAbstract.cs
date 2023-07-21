@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 
 public abstract class ShootingTurretAbstract : TurretAbstract
 {
+    protected override void Start()
+    {
+        base.Start();
+        counter = 0.55f;
+    }
+
     protected virtual void Update()
     {
         counter += Time.deltaTime;

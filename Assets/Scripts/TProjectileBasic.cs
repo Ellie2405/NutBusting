@@ -29,7 +29,7 @@ public class TProjectileBasic : MonoBehaviour
 
     IEnumerator Timeout()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2);
         Destroy(gameObject);
     }
 }

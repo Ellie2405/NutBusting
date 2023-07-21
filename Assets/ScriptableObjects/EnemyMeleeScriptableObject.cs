@@ -11,8 +11,9 @@ public class EnemyMeleeScriptableObject : ScriptableObject
     public int currencyDrop;
     public LayerMask playerObjectLayerMask;
     public LayerMask floorLayerMask;
+    public GameObject HitVFX;
 
     public float scanCD;
     public float attackCD;
-
+    public float attackWindUp;
 }
