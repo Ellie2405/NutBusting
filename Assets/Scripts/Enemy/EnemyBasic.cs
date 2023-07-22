@@ -33,8 +33,11 @@ public class EnemyBasic : MonoBehaviour
 
     private void Update()
     {
-        if (!inRangeOfTarget)
-            Walk();
+        if (GameManager.Instance.GameIsPlaying)
+        {
+            if (!inRangeOfTarget)
+                Walk();
+        }
     }
 
     private void OnTriggerEnter(Collider other)

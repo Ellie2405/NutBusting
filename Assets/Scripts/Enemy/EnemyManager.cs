@@ -19,6 +19,15 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] EnemyBasic[] enemy;
     byte lastpos;
 
+    [SerializeField] float smallEnemyRate;
+    [SerializeField] float waveSize;
+    [SerializeField] float difficulty;
+    [SerializeField] float timeBetweenSpawns;
+    int waveCounter = 0;
+    [SerializeField] int enemiesSpawnedThisWave;
+    bool waveSpawning;
+
+
     enum enemyTypes
     {
         Normal,
@@ -28,6 +37,7 @@ public class EnemyManager : MonoBehaviour
     private void Start()
     {
         StartLevel(currentLevelWaves);
+        StartWave();
     }
 
     private void Update()
@@ -35,14 +45,19 @@ public class EnemyManager : MonoBehaviour
         if (!levelIsPlaying) return;
 
         levelTimer += Time.deltaTime;
-        if (levelTimer > currentLevelWaves[counter].time)
-        {
-            StartCoroutine(SpawnDelay(currentLevelWaves[counter].eType, currentLevelWaves[counter].eAmount));
 
-            counter++;
-            if (counter == currentLevelWaves.Length)
-                levelIsPlaying = false;
+        if (waveSpawning)
+        {
+            Spawner();
         }
+        //if (levelTimer > currentLevelWaves[counter].time)
+        //{
+        //    StartCoroutine(SpawnDelay(currentLevelWaves[counter].eType, currentLevelWaves[counter].eAmount));
+
+        //    counter++;
+        //    if (counter == currentLevelWaves.Length)
+        //        levelIsPlaying = false;
+        //}
     }
 
     public void StartLevel(WaveInfo[] waves)
@@ -50,6 +65,55 @@ public class EnemyManager : MonoBehaviour
         levelIsPlaying = true;
         levelTimer = 0;
         currentLevelWaves = waves;
+    }
+
+    void StartWave()
+    {
+        levelTimer = -3;
+        waveCounter++;
+        Debug.Log($"starting wave {waveCounter}, {waveSize} total, spawn every {timeBetweenSpawns}");
+        enemiesSpawnedThisWave = 0;
+        waveSpawning = true;
+        //add co for short delay between levels
+    }
+
+    void Spawner()
+    {
+        if (enemiesSpawnedThisWave < waveSize)
+        {
+            if (levelTimer > timeBetweenSpawns * enemiesSpawnedThisWave)
+            {
+                if (Random.Range(0, 100) < smallEnemyRate)
+                {
+                    SpawnEnemy(0);
+                }
+                else
+                {
+                    SpawnEnemy(1);
+                }
+                enemiesSpawnedThisWave++;
+            }
+        }
+        else
+        {
+            StartCoroutine(EndWave());
+        }
+    }
+
+    IEnumerator EndWave()
+    {
+        waveSpawning = false;
+        yield return new WaitForSeconds(10);
+        //scale difficulty
+        // wave size
+        waveSize *= MathF.Pow(difficulty, waveCounter);
+        waveSize = MathF.Round(waveSize);
+
+        // spawn rate
+        timeBetweenSpawns--;
+        if (timeBetweenSpawns < 6) timeBetweenSpawns = 6;
+
+        StartWave();
     }
 
     [ContextMenu("Spawn")]
