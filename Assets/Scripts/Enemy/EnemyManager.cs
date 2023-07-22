@@ -7,24 +7,31 @@ using Random = UnityEngine.Random;
 
 public class EnemyManager : MonoBehaviour
 {
-    static public int enemiesAlive = 0;
+    public static EnemyManager Instance { get; private set; }
 
-    bool levelIsPlaying = false;
+    int enemiesAlive = 0;
+
     float levelTimer;
-    [SerializeField] WaveInfo[] currentLevelWaves;
-    byte counter = 0;
-    [SerializeField] int spawnDelayTimer;
 
     [SerializeField] float distanceFromMiddle;
     [SerializeField] EnemyBasic[] enemy;
     byte lastpos;
 
-    [SerializeField] float smallEnemyRate;
+    [Header("Spawner")]
+    [SerializeField] float smallEnemyPercentage;
     [SerializeField] float waveSize;
-    [SerializeField] float difficulty;
-    [SerializeField] float timeBetweenSpawns;
-    int waveCounter = 0;
+    [SerializeField] float difficultyScale;
+    [SerializeField] int breakBetweenWaves;
+
+    [Header("Time Between Spawns")]
+    [SerializeField] float spawnFrequency;
+    [SerializeField] float spawnFrequencyIncrease;
+    [SerializeField] float spawnFrequencyCap;
+
+    [Header("Debug")]
     [SerializeField] int enemiesSpawnedThisWave;
+
+    public int waveCounter { get; private set; } = 0;
     bool waveSpawning;
 
 
@@ -34,16 +41,24 @@ public class EnemyManager : MonoBehaviour
         Heavy
     }
 
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+            Destroy(this);
+        else
+            Instance = this;
+
+        EnemyBasic.OnEnemyDeath += EnemyDied;
+    }
+
+
     private void Start()
     {
-        StartLevel(currentLevelWaves);
         StartWave();
     }
 
     private void Update()
     {
-        if (!levelIsPlaying) return;
-
         levelTimer += Time.deltaTime;
 
         if (waveSpawning)
@@ -60,18 +75,11 @@ public class EnemyManager : MonoBehaviour
         //}
     }
 
-    public void StartLevel(WaveInfo[] waves)
-    {
-        levelIsPlaying = true;
-        levelTimer = 0;
-        currentLevelWaves = waves;
-    }
-
     void StartWave()
     {
         levelTimer = -3;
         waveCounter++;
-        Debug.Log($"starting wave {waveCounter}, {waveSize} total, spawn every {timeBetweenSpawns}");
+        Debug.Log($"starting wave {waveCounter}, {waveSize} total, spawn every {spawnFrequency}");
         enemiesSpawnedThisWave = 0;
         waveSpawning = true;
         //add co for short delay between levels
@@ -81,9 +89,9 @@ public class EnemyManager : MonoBehaviour
     {
         if (enemiesSpawnedThisWave < waveSize)
         {
-            if (levelTimer > timeBetweenSpawns * enemiesSpawnedThisWave)
+            if (levelTimer > spawnFrequency * enemiesSpawnedThisWave)
             {
-                if (Random.Range(0, 100) < smallEnemyRate)
+                if (Random.Range(0, 100) < smallEnemyPercentage)
                 {
                     SpawnEnemy(0);
                 }
@@ -94,7 +102,7 @@ public class EnemyManager : MonoBehaviour
                 enemiesSpawnedThisWave++;
             }
         }
-        else
+        else if (enemiesAlive < 1)
         {
             StartCoroutine(EndWave());
         }
@@ -103,15 +111,15 @@ public class EnemyManager : MonoBehaviour
     IEnumerator EndWave()
     {
         waveSpawning = false;
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(breakBetweenWaves);
         //scale difficulty
         // wave size
-        waveSize *= MathF.Pow(difficulty, waveCounter);
+        waveSize *= MathF.Pow(difficultyScale, waveCounter);
         waveSize = MathF.Round(waveSize);
 
         // spawn rate
-        timeBetweenSpawns--;
-        if (timeBetweenSpawns < 6) timeBetweenSpawns = 6;
+        spawnFrequency -= spawnFrequencyIncrease;
+        if (spawnFrequency < spawnFrequencyCap) spawnFrequency = spawnFrequencyCap;
 
         StartWave();
     }
@@ -139,21 +147,9 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnDelay(int type, int amount)
+    void EnemyDied()
     {
-        for (int i = 0; i < amount; i++)
-        {
-            SpawnEnemy(type);
-            yield return new WaitForSeconds(spawnDelayTimer);
-        }
+        enemiesAlive--;
     }
-}
-
-[System.Serializable]
-public struct WaveInfo
-{
-    [SerializeField] public int time;
-    [SerializeField] public int eType;
-    [SerializeField] public int eAmount;
 }
 

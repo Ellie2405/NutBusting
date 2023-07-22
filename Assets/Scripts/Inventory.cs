@@ -12,13 +12,27 @@ public class Inventory : MonoBehaviour
 
     public static event Action<int> OnCurrencyChanged;
 
+    private float timer = 0f;
+    [SerializeField] float elapsedTime = 1;
+
     private void Awake()
     {
         Instance = this;
     }
+
     private void Start()
     {
         OnCurrencyChanged.Invoke(Currency);
+    }
+
+    private void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer >= elapsedTime)
+        {
+            ObtainCurrency(1);
+            timer = 0f;
+        }
     }
 
     public void Pay(int amount)

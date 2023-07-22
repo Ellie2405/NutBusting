@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b4862d4cc4072c4bb5cee5cfbcc8086, type: 3}
   m_Name: PawnData
   m_EditorClassIdentifier: 
-  maxHP: 5
+  maxHP: 3
   damage: 1
-  movementSpeed: 0.245
-  currencyDrop: 8
+  movementSpeed: 0.2
+  MaxSpeed: 0.5
+  currencyDrop: 10
   playerObjectLayerMask:
     serializedVersion: 2
     m_Bits: 256

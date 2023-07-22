@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,6 +8,8 @@ using static UnityEngine.GraphicsBuffer;
 
 public class EnemyBasic : MonoBehaviour
 {
+    public static event Action OnEnemyDeath; 
+
     [SerializeField] EnemyMeleeScriptableObject EnemyValues;
     int hp;
     bool inRangeOfTarget = false;
@@ -73,7 +76,7 @@ public class EnemyBasic : MonoBehaviour
 
     public void Die()
     {
-        EnemyManager.enemiesAlive--;
+        OnEnemyDeath.Invoke();
         StartCoroutine(DissolveOut());
         //Destroy(gameObject);
     }

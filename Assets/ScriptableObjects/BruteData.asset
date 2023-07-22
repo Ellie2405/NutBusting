@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b4862d4cc4072c4bb5cee5cfbcc8086, type: 3}
   m_Name: BruteData
   m_EditorClassIdentifier: 
-  maxHP: 8
-  damage: 1
-  movementSpeed: 0.14
-  currencyDrop: 10
+  maxHP: 5
+  damage: 2
+  movementSpeed: 0.1
+  MaxSpeed: 0.3
+  currencyDrop: 15
   playerObjectLayerMask:
     serializedVersion: 2
     m_Bits: 256

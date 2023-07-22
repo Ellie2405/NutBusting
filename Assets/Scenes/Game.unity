@@ -78662,22 +78662,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae81bd4f7806c6e41a6d6e1794d1b044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevelWaves:
-  - time: 3
-    eType: 0
-    eAmount: 3
-  - time: 3
-    eType: 1
-    eAmount: 2
-  spawnDelayTimer: 5
   distanceFromMiddle: 7
   enemy:
   - {fileID: 7429005964712218650, guid: 6c9629856e99ffb4abfb985520ad7087, type: 3}
   - {fileID: -7821541152241901746, guid: 97388551508f41946ab652b506c89839, type: 3}
-  smallEnemyRate: 60
+  smallEnemyPercentage: 60
   waveSize: 5
-  difficulty: 1.5
-  timeBetweenSpawns: 15
+  difficultyScale: 1.5
+  breakBetweenWaves: 5
+  spawnFrequency: 4.5
+  spawnFrequencyIncrease: 0.5
+  spawnFrequencyCap: 1.5
   enemiesSpawnedThisWave: 0
 --- !u!1 &1492237439
 GameObject:
@@ -98890,6 +98885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Currency: 50
+  elapsedTime: 1
 --- !u!4 &1893896663 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 02e4064b1a129664888f531c8c4d383e,
