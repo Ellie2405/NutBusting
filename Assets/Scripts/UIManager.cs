@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -28,14 +29,18 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject HalfTurretBar;
     [SerializeField] GameObject LowTurretBar;
     [SerializeField] GameObject EmptyTurretBar;
+    [SerializeField] Image TurretImage;
 
-    [SerializeField] GameObject WaveBar;
+    [SerializeField] Image WaveImage;
+    float wavePortion;
 
 
     private void Awake()
     {
         Inventory.OnCurrencyChanged += UpdateCurrency;
         MainHero.OnHeroDamaged += UpdateHeroHP;
+        EnemyManager.OnWaveStart += UpdateWaveBarPortion;
+        EnemyBasic.OnEnemyDeath += WaveFiller;
     }
     private void Start()
     {
@@ -44,15 +49,6 @@ public class UIManager : MonoBehaviour
     }
 
     #region ingameUI
-
-
-
-
-
-
-
-
-
 
     void UpdateHeroHP(int HP)
     {
@@ -86,6 +82,7 @@ public class UIManager : MonoBehaviour
 
     void UpdateCurrency(int gears)
     {
+        TurretImage.fillAmount = TurretFiller(gears);
         TurretBar.SetActive(false);
         switch (gears)
         {
@@ -113,5 +110,23 @@ public class UIManager : MonoBehaviour
                 break;
         }
     }
+
+    float TurretFiller(int gears)
+    {
+        return (float)gears % 25 / 25;
+    }
+
+    void WaveFiller()
+    {
+        WaveImage.fillAmount += wavePortion;
+    }
+
+    void UpdateWaveBarPortion(float waveSize)
+    {
+        WaveImage.fillAmount = 0;
+        wavePortion = 1f / waveSize;
+        Debug.Log(wavePortion);
+    }
+
     #endregion
 }

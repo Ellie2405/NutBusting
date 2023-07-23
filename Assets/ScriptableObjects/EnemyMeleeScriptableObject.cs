@@ -13,6 +13,9 @@ public class EnemyMeleeScriptableObject : ScriptableObject
     public LayerMask playerObjectLayerMask;
     public LayerMask floorLayerMask;
     public GameObject HitVFX;
+    public Sound SpawnSound;
+    public Sound AttackSound;
+    public Sound DeathSound;
 
     public float scanCD;
     public float attackCD;

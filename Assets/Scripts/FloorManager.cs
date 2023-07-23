@@ -77,7 +77,7 @@ public class FloorManager : MonoBehaviour
             {
                 //pay currency
                 Inventory.Instance.Pay(turretToBuild.GetPrice());
-                Debug.Log($"Turret built succesfully, {turretToBuild}, costed {turretToBuild.GetPrice()}");
+                //Debug.Log($"Turret built succesfully, {turretToBuild}, costed {turretToBuild.GetPrice()}");
 
             }
         }

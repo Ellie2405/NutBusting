@@ -8,7 +8,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class EnemyBasic : MonoBehaviour
 {
-    public static event Action OnEnemyDeath; 
+    public static event Action OnEnemyDeath;
 
     [SerializeField] EnemyMeleeScriptableObject EnemyValues;
     int hp;
@@ -19,6 +19,7 @@ public class EnemyBasic : MonoBehaviour
 
     [SerializeField] Transform feet;
     [SerializeField] Animator animator;
+    [SerializeField] AudioSource audioSource;
     [SerializeField] Renderer[] renderers = new Renderer[0];
 
 
@@ -32,15 +33,13 @@ public class EnemyBasic : MonoBehaviour
         StartCoroutine(DissolveIn());
         StartCoroutine(CheckLoop());
         StartCoroutine(FloorLoop());
+        EnemyValues.SpawnSound.Play();
     }
 
     private void Update()
     {
-        if (GameManager.Instance.GameIsPlaying)
-        {
-            if (!inRangeOfTarget)
-                Walk();
-        }
+        if (!inRangeOfTarget)
+            Walk();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -77,8 +76,8 @@ public class EnemyBasic : MonoBehaviour
     public void Die()
     {
         OnEnemyDeath.Invoke();
+        EnemyValues.DeathSound.Play();
         StartCoroutine(DissolveOut());
-        //Destroy(gameObject);
     }
 
     void CheckRing()
@@ -160,6 +159,7 @@ public class EnemyBasic : MonoBehaviour
     {
         animator.SetTrigger("Attack");
         yield return new WaitForSeconds(EnemyValues.attackWindUp);
+        EnemyValues.AttackSound.Play();
         target.TakeDamage(EnemyValues.damage, this);
     }
     IEnumerator FloorLoop()

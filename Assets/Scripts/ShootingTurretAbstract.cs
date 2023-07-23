@@ -9,6 +9,7 @@ public abstract class ShootingTurretAbstract : TurretAbstract
     {
         base.Start();
         counter = 0.55f;
+        TurretValues.BuildSound.Play();
     }
 
     protected virtual void Update()
@@ -34,5 +35,12 @@ public abstract class ShootingTurretAbstract : TurretAbstract
         Instantiate(TurretValues.projectile, new(transform.position.x, TurretValues.projectileHeight, transform.position.z), transform.rotation);
         attacksHistorical++;
         counter = 0;
+        TurretValues.FireSound.Play();
+    }
+
+    protected override void DestroyTurret()
+    {
+        TurretValues.BreakSound.Play();
+        base.DestroyTurret();
     }
 }

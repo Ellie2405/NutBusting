@@ -24,6 +24,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   HitVFX: {fileID: 5847526129241933757, guid: 7f80f4a174607c34da1fe62bab759993, type: 3}
+  SpawnSound:
+    clip: {fileID: 8300000, guid: b1d95e2c104cf0644a8782719d0f4ada, type: 3}
+    volume: 0.1
+  AttackSound:
+    clip: {fileID: 8300000, guid: 36fc2f96492a40e46840f880792f8272, type: 3}
+    volume: 0.1
+  DeathSound:
+    clip: {fileID: 8300000, guid: da83d53ef05b9f54198dd9e0e447da52, type: 3}
+    volume: 0.1
   scanCD: 1
   attackCD: 1.16
   attackWindUp: 0.24

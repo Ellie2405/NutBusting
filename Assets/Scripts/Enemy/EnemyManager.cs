@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class EnemyManager : MonoBehaviour
 {
+    public static event Action<float> OnWaveStart;
     public static EnemyManager Instance { get; private set; }
 
     int enemiesAlive = 0;
@@ -30,6 +31,7 @@ public class EnemyManager : MonoBehaviour
 
     [Header("Debug")]
     [SerializeField] int enemiesSpawnedThisWave;
+    int enemiesKilledThisWave;
 
     public int waveCounter { get; private set; } = 0;
     bool waveSpawning;
@@ -81,8 +83,9 @@ public class EnemyManager : MonoBehaviour
         waveCounter++;
         Debug.Log($"starting wave {waveCounter}, {waveSize} total, spawn every {spawnFrequency}");
         enemiesSpawnedThisWave = 0;
+        enemiesKilledThisWave = 0;
         waveSpawning = true;
-        //add co for short delay between levels
+        OnWaveStart.Invoke(waveSize);
     }
 
     void Spawner()
@@ -111,10 +114,10 @@ public class EnemyManager : MonoBehaviour
     IEnumerator EndWave()
     {
         waveSpawning = false;
-        yield return new WaitForSeconds(breakBetweenWaves);
+        yield return new WaitForSeconds(breakBetweenWaves - 3);
         //scale difficulty
         // wave size
-        waveSize *= MathF.Pow(difficultyScale, waveCounter);
+        waveSize *= difficultyScale;
         waveSize = MathF.Round(waveSize);
 
         // spawn rate
@@ -149,6 +152,7 @@ public class EnemyManager : MonoBehaviour
 
     void EnemyDied()
     {
+        enemiesKilledThisWave++;
         enemiesAlive--;
     }
 }

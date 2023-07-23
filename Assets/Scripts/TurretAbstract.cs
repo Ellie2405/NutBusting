@@ -7,7 +7,7 @@ public abstract class TurretAbstract : MonoBehaviour
     protected const int MINUTE = 60;
 
     [SerializeField] protected TPBasicScriptableObject TurretValues;
-    [SerializeField] protected int level;
+    [SerializeField] protected AudioSource audioSource;
     protected int hp;
     RingFloor parentRing;
     int ringPosition;

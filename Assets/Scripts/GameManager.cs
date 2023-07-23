@@ -23,8 +23,16 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame(bool pauseState)
     {
-        GameIsPlaying = !pauseState;
+        // GameIsPlaying = !pauseState;
+        if (pauseState)
+        {
+            Time.timeScale = 0;
 
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
 
 }
