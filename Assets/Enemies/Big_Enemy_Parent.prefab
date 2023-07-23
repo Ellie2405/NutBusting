@@ -53,6 +53,8 @@ MonoBehaviour:
   EnemyValues: {fileID: 11400000, guid: f2316700d68de7146b1cd2228e21c87c, type: 2}
   feet: {fileID: 1589197896929217786}
   animator: {fileID: 1995470807780536663}
+  c: {fileID: 2159660231912291924}
+  lights: {fileID: 4366080032453220052}
   audioSource: {fileID: 3086911092934758213}
   renderers:
   - {fileID: 8921948164791405510}
@@ -328,6 +330,12 @@ SkinnedMeshRenderer:
 --- !u!4 &4054723869530964802 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4554149708845407384, guid: f1b29d790bc604b45801b3945a8c3ef1,
+    type: 3}
+  m_PrefabInstance: {fileID: 537849101004120026}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4366080032453220052 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4314936902459443470, guid: f1b29d790bc604b45801b3945a8c3ef1,
     type: 3}
   m_PrefabInstance: {fileID: 537849101004120026}
   m_PrefabAsset: {fileID: 0}

@@ -9,7 +9,7 @@ public abstract class ShootingTurretAbstract : TurretAbstract
     {
         base.Start();
         counter = 0.55f;
-        TurretValues.BuildSound.Play();
+        TurretValues.BuildSound.Play(audioSource);
     }
 
     protected virtual void Update()
@@ -21,26 +21,16 @@ public abstract class ShootingTurretAbstract : TurretAbstract
         }
     }
 
-    private void FixedUpdate()
-    {
-        if (attacksHistorical >= TurretValues.shotsToDie)
-        {
-            DestroyTurret();
-        }
-
-    }
-
     protected void Shoot()
     {
         Instantiate(TurretValues.projectile, new(transform.position.x, TurretValues.projectileHeight, transform.position.z), transform.rotation);
         attacksHistorical++;
         counter = 0;
-        TurretValues.FireSound.Play();
+        TurretValues.FireSound.Play(audioSource);
+        if (attacksHistorical >= TurretValues.shotsToDie)
+        {
+            DestroyTurret();
+        }
     }
 
-    protected override void DestroyTurret()
-    {
-        TurretValues.BreakSound.Play();
-        base.DestroyTurret();
-    }
 }

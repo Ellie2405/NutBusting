@@ -34,4 +34,7 @@ public class MainHero : TurretAbstract
         Destroy(gameObject);
     }
 
+    protected override void OnDestroy()
+    {
+    }
 }

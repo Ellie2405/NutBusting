@@ -7,6 +7,7 @@ public class SoundManager : MonoBehaviour
     public static SoundManager Instance;
 
     [SerializeField] AudioSource WaveStart;
+    [SerializeField] AudioSource RotatingStones;
 
     private void Awake()
     {
@@ -25,5 +26,16 @@ public class SoundManager : MonoBehaviour
     void PlayWaveStart(float wave)
     {
         WaveStart.Play();
+    }
+
+    public void PlayRotatingStone()
+    {
+        RotatingStones.Play();
+    }
+
+    public void StopRotatingStone()
+    {
+        Debug.Log("stopping sound");
+        RotatingStones.Stop();
     }
 }

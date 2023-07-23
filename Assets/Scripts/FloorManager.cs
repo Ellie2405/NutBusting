@@ -12,8 +12,9 @@ public class FloorManager : MonoBehaviour
     [SerializeField] LayerMask turretSlotLayerMask;
 
     [SerializeField] RingFloor floorToMove;
+    [SerializeField] GameObject arrows;
     TurretSlot turretSlotSelected;
-
+    
 
     private void Awake()
     {
@@ -21,6 +22,11 @@ public class FloorManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+    }
+
+    private void Start()
+    {
+        Destroy(arrows, 8);
     }
 
     void Update()
@@ -49,8 +55,8 @@ public class FloorManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            SelectSlot();
-            OrderTurret(turret);
+            if (SelectSlot())
+                OrderTurret(turret);
         }
         if (Input.GetMouseButtonDown(0))
         {
@@ -85,15 +91,15 @@ public class FloorManager : MonoBehaviour
 
     }
 
-    //select slot
-    void SelectSlot()
+    bool SelectSlot()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit raycastHit, 100, turretSlotLayerMask))
         {
             turretSlotSelected = raycastHit.transform.GetComponent<TurretSlot>().SelectSlot();
+            return true;
         }
-
+        return false;
     }
 
     //store start

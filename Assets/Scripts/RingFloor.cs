@@ -9,6 +9,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class RingFloor : MonoBehaviour
 {
+    static bool isPlayingSound = false;
     [SerializeField] Transform parentTransform;
     [SerializeField] bool canHaveTurrets;
     [SerializeField] float distanceFromMiddle;
@@ -46,6 +47,11 @@ public class RingFloor : MonoBehaviour
     {
         if (!inPosition)
         {
+            if (!isPlayingSound)
+            {
+                SoundManager.Instance.PlayRotatingStone();
+                isPlayingSound = true;
+            }
             RotateSlowly();
             CheckPosition();
         }
@@ -152,8 +158,7 @@ public class RingFloor : MonoBehaviour
             //please come up with something better for this
             if (parentRotation >= targetPosition && parentRotation < errorRange)
             {
-                parentTransform.eulerAngles.Set(0, targetPosition, 0);
-                inPosition = true;
+                SetInPosition();
             }
         }
 
@@ -163,10 +168,17 @@ public class RingFloor : MonoBehaviour
             //please come up with something better for this
             if (parentRotation <= targetPosition && parentRotation > errorRange)
             {
-                parentTransform.eulerAngles.Set(0, targetPosition, 0);
-                inPosition = true;
+                SetInPosition();
             }
         }
+    }
+
+    void SetInPosition()
+    {
+        parentTransform.eulerAngles.Set(0, targetPosition, 0);
+        inPosition = true;
+        SoundManager.Instance.StopRotatingStone();
+        isPlayingSound = false;
     }
 
     public void Rotate(int degrees)

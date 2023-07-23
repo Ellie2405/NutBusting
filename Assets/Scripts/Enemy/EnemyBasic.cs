@@ -11,6 +11,7 @@ public class EnemyBasic : MonoBehaviour
     public static event Action OnEnemyDeath;
 
     [SerializeField] EnemyMeleeScriptableObject EnemyValues;
+    bool isAlive = true;
     int hp;
     bool inRangeOfTarget = false;
     RingFloor parentFloor = null;
@@ -19,6 +20,8 @@ public class EnemyBasic : MonoBehaviour
 
     [SerializeField] Transform feet;
     [SerializeField] Animator animator;
+    [SerializeField] Collider c;
+    [SerializeField] GameObject lights;
     [SerializeField] AudioSource audioSource;
     [SerializeField] Renderer[] renderers = new Renderer[0];
 
@@ -33,12 +36,12 @@ public class EnemyBasic : MonoBehaviour
         StartCoroutine(DissolveIn());
         StartCoroutine(CheckLoop());
         StartCoroutine(FloorLoop());
-        EnemyValues.SpawnSound.Play();
+        EnemyValues.SpawnSound.Play(audioSource);
     }
 
     private void Update()
     {
-        if (!inRangeOfTarget)
+        if (isAlive && !inRangeOfTarget)
             Walk();
     }
 
@@ -75,9 +78,13 @@ public class EnemyBasic : MonoBehaviour
 
     public void Die()
     {
+        isAlive = false;
         OnEnemyDeath.Invoke();
-        EnemyValues.DeathSound.Play();
+        c.enabled = false;
+        lights.SetActive(false);
+        EnemyValues.DeathSound.Play(audioSource);
         StartCoroutine(DissolveOut());
+        Destroy(gameObject, 2);
     }
 
     void CheckRing()
@@ -96,16 +103,19 @@ public class EnemyBasic : MonoBehaviour
 
     void CheckForPlayer()
     {
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit rayCastHit, 1, EnemyValues.playerObjectLayerMask))
+        if (isAlive)
         {
-            inRangeOfTarget = true;
-            GCD = EnemyValues.attackCD;
-            StartCoroutine(AttackCo(rayCastHit.transform.GetComponent<TurretAbstract>()));
-        }
-        else
-        {
-            inRangeOfTarget = false;
-            GCD = EnemyValues.scanCD;
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit rayCastHit, 1, EnemyValues.playerObjectLayerMask))
+            {
+                inRangeOfTarget = true;
+                GCD = EnemyValues.attackCD;
+                StartCoroutine(AttackCo(rayCastHit.transform.GetComponent<TurretAbstract>()));
+            }
+            else
+            {
+                inRangeOfTarget = false;
+                GCD = EnemyValues.scanCD;
+            }
         }
     }
 
@@ -143,7 +153,6 @@ public class EnemyBasic : MonoBehaviour
             }
             yield return new WaitForEndOfFrame();
         }
-        Destroy(gameObject);
     }
 
     IEnumerator CheckLoop()
@@ -159,9 +168,10 @@ public class EnemyBasic : MonoBehaviour
     {
         animator.SetTrigger("Attack");
         yield return new WaitForSeconds(EnemyValues.attackWindUp);
-        EnemyValues.AttackSound.Play();
+        EnemyValues.AttackSound.Play(audioSource);
         target.TakeDamage(EnemyValues.damage, this);
     }
+
     IEnumerator FloorLoop()
     {
         while (true)
@@ -178,5 +188,9 @@ public class EnemyBasic : MonoBehaviour
             transform.Translate(Vector3.up * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    void PlaySound()
+    {
     }
 }

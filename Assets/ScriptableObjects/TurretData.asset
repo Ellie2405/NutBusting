@@ -27,10 +27,7 @@ MonoBehaviour:
     volume: 0.1
   FireSound:
     clip: {fileID: 8300000, guid: feb0c15a66553f54eb6e203c6002e6d7, type: 3}
-    volume: 0.1
-  BreakSound:
-    clip: {fileID: 8300000, guid: bb662fcf13487db448fc20150f192545, type: 3}
-    volume: 0.1
+    volume: 0.04
   projectileHeight: 1.95
   price: 25
   shotsToDie: 10

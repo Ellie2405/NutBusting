@@ -11141,6 +11141,8 @@ MonoBehaviour:
   EnemyValues: {fileID: 11400000, guid: 6323927699874444083329d25c67fe62, type: 2}
   feet: {fileID: 2650121604155658626}
   animator: {fileID: 2987231068281874118}
+  c: {fileID: 3195357557007246660}
+  lights: {fileID: 2987231068054431243}
   audioSource: {fileID: 5349039618997227818}
   renderers:
   - {fileID: 2987231068456897526}

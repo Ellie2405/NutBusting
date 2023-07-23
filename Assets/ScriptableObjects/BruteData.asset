@@ -32,7 +32,7 @@ MonoBehaviour:
     volume: 0.1
   DeathSound:
     clip: {fileID: 8300000, guid: da83d53ef05b9f54198dd9e0e447da52, type: 3}
-    volume: 0.1
+    volume: 0.04
   scanCD: 1
   attackCD: 2.6
   attackWindUp: 1

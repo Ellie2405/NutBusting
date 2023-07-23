@@ -55,7 +55,7 @@ public class UIManager : MonoBehaviour
         HealthBar.SetActive(false);
         switch (HP)
         {
-            case 0:
+            case < 1:
                 EmptyHealthBar.SetActive(true);
                 HealthBar = EmptyHealthBar;
                 break;

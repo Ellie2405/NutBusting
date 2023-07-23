@@ -20,15 +20,12 @@ MonoBehaviour:
   shotsPerMinute: 60
   projectile: {fileID: 2806401507574797057, guid: 4a03eefa6b08ef141bd6530175eb6db6,
     type: 3}
-  DestroyedVFX: {fileID: 2337024277319118347, guid: 56003e4218555f544ac18c06aec3cefe,
+  DestroyedVFX: {fileID: 3770040390663037189, guid: 57f730bfb3c2f5b4e9cbf3bb09412ec0,
     type: 3}
   BuildSound:
     clip: {fileID: 0}
     volume: 0
   FireSound:
-    clip: {fileID: 0}
-    volume: 0.1
-  BreakSound:
     clip: {fileID: 0}
     volume: 0.1
   projectileHeight: 1.75
