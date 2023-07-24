@@ -6,13 +6,14 @@ using UnityEngine;
 public class MainHero : TurretAbstract
 {
     public static event Action<int> OnHeroDamaged;
+    public static event Action OnCastleDestroyed;
     [SerializeField] Animator animator;
     
 
     protected override void Start()
     {
         base.Start();
-        OnHeroDamaged.Invoke(hp);
+        OnHeroDamaged?.Invoke(hp);
     }
     public override bool TakeDamage(int damage, EnemyBasic attacker)
     {
@@ -31,10 +32,8 @@ public class MainHero : TurretAbstract
     protected override void DestroyTurret()
     {
         Instantiate(TurretValues.DestroyedVFX, transform.position + Vector3.up, Quaternion.identity);
+        OnCastleDestroyed.Invoke();
         Destroy(gameObject);
     }
 
-    protected override void OnDestroy()
-    {
-    }
 }

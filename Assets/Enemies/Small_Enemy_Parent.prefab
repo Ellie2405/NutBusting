@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2987231066745194889}
   - component: {fileID: 2987231066745194887}
   - component: {fileID: 2987231066745194886}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pCube19_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2987231066752724967}
   - component: {fileID: 2987231066752724966}
   - component: {fileID: 2987231066752724969}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: fireorb_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4913,7 +4913,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2987231067299672234}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Whole_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4951,7 +4951,7 @@ GameObject:
   - component: {fileID: 2987231066946586918}
   - component: {fileID: 2987231066946586916}
   - component: {fileID: 2987231066946586919}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pCylinder15_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5034,7 +5034,7 @@ GameObject:
   - component: {fileID: 2987231067289749807}
   - component: {fileID: 2987231067289749805}
   - component: {fileID: 2987231067289749804}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pCylinder13_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5117,7 +5117,7 @@ GameObject:
   - component: {fileID: 2987231067371157572}
   - component: {fileID: 2987231067371157570}
   - component: {fileID: 2987231067371157573}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pCube21_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5198,7 +5198,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2987231067451051581}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Head_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5232,7 +5232,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2987231067614551008}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Long_Arm_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5265,7 +5265,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2987231067748142686}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hand_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5300,7 +5300,7 @@ GameObject:
   - component: {fileID: 2987231068266342167}
   - component: {fileID: 2987231068266342165}
   - component: {fileID: 2987231068266342164}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: God_Rays_MDL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5383,7 +5383,7 @@ GameObject:
   - component: {fileID: 2987231068040410551}
   - component: {fileID: 2987231068040410549}
   - component: {fileID: 2987231068040410548}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pCube22_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5464,7 +5464,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2987231068054431240}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5504,7 +5504,7 @@ GameObject:
   - component: {fileID: 2987231068217091373}
   - component: {fileID: 2987231068217091371}
   - component: {fileID: 2987231068217091370}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pCylinder14_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5586,7 +5586,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2987231068281874119}
   - component: {fileID: 2987231068281874118}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Small_Enemy_Idle_Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5640,7 +5640,7 @@ GameObject:
   - component: {fileID: 2987231068456897529}
   - component: {fileID: 2987231068456897527}
   - component: {fileID: 2987231068456897526}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Body_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5723,7 +5723,7 @@ GameObject:
   - component: {fileID: 2987231068478347747}
   - component: {fileID: 2987231068478347746}
   - component: {fileID: 2987231068478347749}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Halo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5758,7 +5758,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.9245283, g: 0.7471691, b: 0.54657644, a: 1}
   m_Intensity: 5.9
-  m_Range: 10
+  m_Range: 4
   m_SpotAngle: 37.42752
   m_InnerSpotAngle: 29.229603
   m_CookieSize: 10
@@ -5794,9 +5794,9 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1024
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -5838,7 +5838,7 @@ GameObject:
   - component: {fileID: 2987231068573820286}
   - component: {fileID: 2987231068573820161}
   - component: {fileID: 2987231068573820160}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Head_Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5909,7 +5909,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1024
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -5953,7 +5953,7 @@ GameObject:
   - component: {fileID: 2987231068642137615}
   - component: {fileID: 2987231068642137614}
   - component: {fileID: 2987231068642137617}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Chest_Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6024,7 +6024,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1024
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -6068,7 +6068,7 @@ GameObject:
   - component: {fileID: 2987231068677584139}
   - component: {fileID: 2987231068677584138}
   - component: {fileID: 2987231068677584141}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Back_Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6103,7 +6103,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.54509807, g: 0.7343978, b: 0.9254902, a: 1}
   m_Intensity: 5.9
-  m_Range: 10
+  m_Range: 4
   m_SpotAngle: 37.42752
   m_InnerSpotAngle: 29.229603
   m_CookieSize: 10
@@ -6139,9 +6139,9 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1024
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -6183,7 +6183,7 @@ GameObject:
   - component: {fileID: 2987231068765213512}
   - component: {fileID: 2987231068765213510}
   - component: {fileID: 2987231068765213513}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pCube18_Low
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6266,7 +6266,7 @@ GameObject:
   - component: {fileID: 2987231068781289687}
   - component: {fileID: 2987231068781289686}
   - component: {fileID: 2987231068781289689}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11089,7 +11089,7 @@ GameObject:
   - component: {fileID: 7429005964712218650}
   - component: {fileID: 429769970036509882}
   - component: {fileID: 5349039618997227818}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Small_Enemy_Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11178,7 +11178,8 @@ AudioSource:
   m_GameObject: {fileID: 6741014201437107314}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 2a90e21d6aee25f438ce5983d8bf4e0d,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.1
@@ -11272,6 +11273,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2650121604155658626}
     m_Modifications:
+    - target: {fileID: 6288793141858974494, guid: 7c7ae5ff92c9b164d83db8d9400b722b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6288793141858974495, guid: 7c7ae5ff92c9b164d83db8d9400b722b,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -11282,10 +11288,25 @@ PrefabInstance:
       propertyPath: moveWithTransform
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6288793141910626453, guid: 7c7ae5ff92c9b164d83db8d9400b722b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6288793143418143746, guid: 7c7ae5ff92c9b164d83db8d9400b722b,
         type: 3}
       propertyPath: moveWithTransform
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288793143418143751, guid: 7c7ae5ff92c9b164d83db8d9400b722b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288793143553348272, guid: 7c7ae5ff92c9b164d83db8d9400b722b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6288793143553348275, guid: 7c7ae5ff92c9b164d83db8d9400b722b,
         type: 3}
@@ -11352,6 +11373,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Spawn_Laser 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6288793143737846583, guid: 7c7ae5ff92c9b164d83db8d9400b722b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6288793143771257649, guid: 7c7ae5ff92c9b164d83db8d9400b722b,
         type: 3}
       propertyPath: moveWithTransform
@@ -11367,10 +11393,20 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 6288793143771257655, guid: 7c7ae5ff92c9b164d83db8d9400b722b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6288793143859419653, guid: 7c7ae5ff92c9b164d83db8d9400b722b,
         type: 3}
       propertyPath: moveWithTransform
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288793143859419706, guid: 7c7ae5ff92c9b164d83db8d9400b722b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c7ae5ff92c9b164d83db8d9400b722b, type: 3}

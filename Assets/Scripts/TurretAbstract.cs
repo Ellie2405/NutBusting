@@ -52,12 +52,13 @@ public abstract class TurretAbstract : MonoBehaviour
     protected virtual void DestroyTurret()
     {
         parentRing.FreeUpSpot(ringPosition);
-        Destroy(gameObject, 0.5f);
+        StartCoroutine(DestroyDelay());
     }
 
-    virtual protected void OnDestroy()
+    IEnumerator DestroyDelay()
     {
+        yield return new WaitForSeconds(0.5f);
         Instantiate(TurretValues.DestroyedVFX, transform.position, Quaternion.identity);
-        
+        Destroy(gameObject);
     }
 }

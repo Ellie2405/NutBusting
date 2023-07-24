@@ -4,11 +4,17 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance { get; private set; }
+
     private const string GearsTextFormat = "Gears:{0}";
     private const string HPTextFormat = "Lives:{0}";
+
+    [SerializeField] GameObject DefeatUI;
+    [SerializeField] GameObject MainMenu;
 
     [Header("In Game")]
     [SerializeField] GameObject InGameUI;
@@ -32,23 +38,80 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image TurretImage;
 
     [SerializeField] Image WaveImage;
+    GameObject currentWaveNumber;
+    [SerializeField] GameObject[] WaveNumbers;
     float wavePortion;
-
 
     private void Awake()
     {
-        Inventory.OnCurrencyChanged += UpdateCurrency;
-        MainHero.OnHeroDamaged += UpdateHeroHP;
-        EnemyManager.OnWaveStart += UpdateWaveBarPortion;
-        EnemyBasic.OnEnemyDeath += WaveFiller;
+        if (Instance != null && Instance != this)
+            Destroy(gameObject);
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
     }
     private void Start()
     {
         HealthBar = FullHealthBar;
         TurretBar = FullTurretBar;
+        currentWaveNumber = WaveNumbers[0];
+        SceneManager.sceneLoaded += SceneLoaded;
+        Inventory.OnCurrencyChanged += UpdateCurrency;
+        MainHero.OnHeroDamaged += UpdateHeroHP;
+        EnemyManager.OnWaveStart += UpdateWaveBarPortion;
+        EnemyBasic.OnEnemyDeath += WaveFiller;
+    }
+
+    void SceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        switch (scene.buildIndex)
+        {
+            case 0:
+                HideGameUI();
+                ShowMainMenu();
+                //Inventory.OnCurrencyChanged -= UpdateCurrency;
+                //MainHero.OnHeroDamaged -= UpdateHeroHP;
+                //EnemyManager.OnWaveStart -= UpdateWaveBarPortion;
+                //EnemyBasic.OnEnemyDeath -= WaveFiller;
+                break;
+            case 1:
+                GameManager.Instance.PauseGame(false);
+                ShowGameUI();
+                HideMainMenu();
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void ChangeScene(int scene)
+    {
+        GameManager.Instance.SwitchScene(scene);
+
+    }
+
+    public void ToggleSound(bool toggle)
+    {
+        SoundManager.Instance.ToggleSound(toggle);
     }
 
     #region ingameUI
+
+    void ShowGameUI()
+    {
+        InGameUI.SetActive(true);
+        DefeatUI.SetActive(false);
+        PauseMenu.SetActive(false);
+    }
+
+    void HideGameUI()
+    {
+        InGameUI.SetActive(false);
+        DefeatUI.SetActive(false);
+        PauseMenu.SetActive(false);
+    }
 
     void UpdateHeroHP(int HP)
     {
@@ -116,6 +179,13 @@ public class UIManager : MonoBehaviour
         return (float)gears % 25 / 25;
     }
 
+    public void UpdateWaveNumber(int num)
+    {
+        currentWaveNumber.SetActive(false);
+        WaveNumbers[num].SetActive(true);
+        currentWaveNumber = WaveNumbers[num];
+    }
+
     void WaveFiller()
     {
         WaveImage.fillAmount += wavePortion;
@@ -129,4 +199,19 @@ public class UIManager : MonoBehaviour
     }
 
     #endregion
+
+    void ShowMainMenu()
+    {
+        MainMenu.SetActive(true);
+    }
+
+    void HideMainMenu()
+    {
+        MainMenu.SetActive(false);
+    }
+
+    public void ShowDefeatScreen()
+    {
+        DefeatUI.SetActive(true);
+    }
 }

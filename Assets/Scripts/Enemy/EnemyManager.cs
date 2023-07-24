@@ -81,6 +81,7 @@ public class EnemyManager : MonoBehaviour
     {
         levelTimer = -3;
         waveCounter++;
+        UIManager.Instance.UpdateWaveNumber(waveCounter);
         Debug.Log($"starting wave {waveCounter}, {waveSize} total, spawn every {spawnFrequency}");
         enemiesSpawnedThisWave = 0;
         enemiesKilledThisWave = 0;
@@ -124,6 +125,7 @@ public class EnemyManager : MonoBehaviour
         spawnFrequency -= spawnFrequencyIncrease;
         if (spawnFrequency < spawnFrequencyCap) spawnFrequency = spawnFrequencyCap;
 
+        Inventory.Instance.InreaseIncomeRate();
         StartWave();
     }
 

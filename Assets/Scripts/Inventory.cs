@@ -25,7 +25,7 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
-        OnCurrencyChanged.Invoke(Currency);
+        OnCurrencyChanged?.Invoke(Currency);
     }
 
     private void Update()
@@ -59,6 +59,12 @@ public class Inventory : MonoBehaviour
     {
         Currency += amount;
         if (Currency > Constants.MAX_CURRENCY) Currency = Constants.MAX_CURRENCY;
-        OnCurrencyChanged.Invoke(Currency);
+        OnCurrencyChanged?.Invoke(Currency);
+    }
+
+    public void InreaseIncomeRate()
+    {
+        elapsedTime -= 0.1f;
+        if (elapsedTime < 0.6f) elapsedTime = 0.6f;
     }
 }

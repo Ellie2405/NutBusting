@@ -13,7 +13,22 @@ public class GameManager : MonoBehaviour
         if (Instance != null && Instance != this)
             Destroy(this);
         else
+        {
             Instance = this;
+            DontDestroyOnLoad(this);
+        }
+    }
+
+    private void Start()
+    {
+        MainHero.OnCastleDestroyed += Lose;
+
+    }
+
+    void Lose()
+    {
+        GameIsPlaying = false;
+        StartCoroutine(LoseCo());
     }
 
     public void SwitchScene(int scene)
@@ -35,4 +50,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    IEnumerator LoseCo()
+    {
+        yield return new WaitForSeconds(3);
+        UIManager.Instance.ShowDefeatScreen();
+        PauseGame(true);
+    }
 }

@@ -13,6 +13,7 @@ public class FloorManager : MonoBehaviour
 
     [SerializeField] RingFloor floorToMove;
     [SerializeField] GameObject arrows;
+    [SerializeField] AudioSource RotatingStones;
     TurretSlot turretSlotSelected;
     
 
@@ -127,4 +128,15 @@ public class FloorManager : MonoBehaviour
         }
 
     }
+
+    public void PlayRotatingStone()
+    {
+        RotatingStones.Play();
+    }
+
+    public void StopRotatingStone()
+    {
+        RotatingStones.Stop();
+    }
+
 }

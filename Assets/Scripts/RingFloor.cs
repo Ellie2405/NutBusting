@@ -49,7 +49,7 @@ public class RingFloor : MonoBehaviour
         {
             if (!isPlayingSound)
             {
-                SoundManager.Instance.PlayRotatingStone();
+                FloorManager.Instance.PlayRotatingStone();
                 isPlayingSound = true;
             }
             RotateSlowly();
@@ -177,7 +177,7 @@ public class RingFloor : MonoBehaviour
     {
         parentTransform.eulerAngles.Set(0, targetPosition, 0);
         inPosition = true;
-        SoundManager.Instance.StopRotatingStone();
+        FloorManager.Instance.StopRotatingStone();
         isPlayingSound = false;
     }
 
