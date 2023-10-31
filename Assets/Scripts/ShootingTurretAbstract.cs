@@ -23,7 +23,14 @@ public abstract class ShootingTurretAbstract : TurretAbstract
 
     protected void Shoot()
     {
-        Instantiate(TurretValues.projectile, new(transform.position.x, TurretValues.projectileHeight, transform.position.z), transform.rotation);
+        //Instantiate(TurretValues.projectile, new(transform.position.x, TurretValues.projectileHeight, transform.position.z), transform.rotation);
+        GameObject bullet = ObjectPooler.Instance.GetPooledObject(TurretValues.projTag);
+        if(!ReferenceEquals(bullet, null))
+        {
+            bullet.transform.position = new(transform.position.x, TurretValues.projectileHeight, transform.position.z);
+            bullet.transform.rotation = transform.rotation;
+            bullet.SetActive(true);
+        }
         attacksHistorical++;
         counter = 0;
         TurretValues.FireSound.Play(audioSource);

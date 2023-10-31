@@ -10,7 +10,7 @@ public class TProjectileBasic : MonoBehaviour
     readonly Vector3 AimDirection = new(0, -0.1f, 1);
     float speed;
 
-    void Start()
+    void OnEnable()
     {
         SetProjectileSpeed();
         //rotate the pojectile to send its damage
@@ -32,12 +32,12 @@ public class TProjectileBasic : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //vfx
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     IEnumerator Timeout()
     {
         yield return new WaitForSeconds(2);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

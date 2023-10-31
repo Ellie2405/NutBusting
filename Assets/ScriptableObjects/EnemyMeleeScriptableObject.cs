@@ -12,7 +12,7 @@ public class EnemyMeleeScriptableObject : ScriptableObject
     public int currencyDrop;
     public LayerMask playerObjectLayerMask;
     public LayerMask floorLayerMask;
-    public GameObject HitVFX;
+    public string HitVFX;
     public Sound SpawnSound;
     public Sound AttackSound;
     public Sound DeathSound;

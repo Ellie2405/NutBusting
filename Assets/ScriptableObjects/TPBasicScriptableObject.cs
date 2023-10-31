@@ -15,6 +15,7 @@ public class TPBasicScriptableObject : ScriptableObject
     public GameObject DestroyedVFX;
     public Sound BuildSound;
     public Sound FireSound;
+    public string projTag;
 
     public float projectileHeight;
     public int price;

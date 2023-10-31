@@ -28,6 +28,7 @@ MonoBehaviour:
   FireSound:
     clip: {fileID: 8300000, guid: feb0c15a66553f54eb6e203c6002e6d7, type: 3}
     volume: 0.04
+  projTag: PlayerProj
   projectileHeight: 1.95
   price: 25
   shotsToDie: 10

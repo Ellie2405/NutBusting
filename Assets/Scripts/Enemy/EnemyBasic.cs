@@ -57,7 +57,13 @@ public class EnemyBasic : MonoBehaviour
     public void TakeDamage(int i)
     {
         hp -= i;
-        Instantiate(EnemyValues.HitVFX, transform.position + (Vector3.up * 0.5f), Quaternion.identity);
+        //Instantiate(EnemyValues.HitVFX, transform.position + (Vector3.up * 0.5f), Quaternion.identity);
+        GameObject vfx = ObjectPooler.Instance.GetPooledObject(EnemyValues.HitVFX);
+        if (!ReferenceEquals(vfx, null))
+        {
+            vfx.transform.position = transform.position + (Vector3.up * 0.5f);
+            vfx.SetActive(true);
+        }
         CheckHP();
     }
 

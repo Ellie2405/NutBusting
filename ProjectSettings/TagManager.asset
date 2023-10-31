@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerProj
   - Step
+  - EnemyHitVFX
   layers:
   - Default
   - TransparentFX
